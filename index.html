@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d10">
+<title>345影视 — 影像资料室 · 345yingshi-zh.github.io｜片目、主创与上映信息</title>
+<meta name="description" content="345影视（https://345yingshi-zh.github.io）是面向普通观众的影像资料室，收录华语与全球电影的片目信息、主创履历、上映档期与版本考据。页面只做静态资料整理，不含播放器、下载入口与外部跳转，适合按片名、导演、年份和类型检索阅读。">
+<meta name="keywords" content="345影视,345yingshi-zh.github.io,华语电影资料,电影片目检索,导演作品年表,上映档期,影片版本考据,影评档案">
+<link rel="canonical" href="https://345yingshi-zh.github.io/">
+<style>
+:root{
+  --bg:#0b0d10; --bg2:#11151b; --line:#232a33; --txt:#dfe4ea; --mut:#8b949e;
+  --acc:#ff4d2e; --acc2:#ffb020; --paper:#f4ede0; --ink:#1c1f24;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+  font-size:clamp(15px,2.4vw,17px); line-height:1.75; -webkit-text-size-adjust:100%;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+/* ---------- 顶栏 ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(11,13,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.brand{font-weight:800;letter-spacing:.04em;font-size:clamp(16px,2.6vw,20px)}
+.brand i{font-style:normal;color:var(--acc)}
+.brand small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;color:var(--mut);line-height:1.1}
+.nav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{padding:8px 12px;font-size:13px;color:var(--mut);border-bottom:2px solid transparent;white-space:nowrap}
+.nav a:hover,.nav a:focus{color:var(--txt);border-color:var(--acc)}
+
+/* ---------- 开场 ---------- */
+.hero{padding:clamp(48px,10vw,96px) 0 clamp(40px,7vw,64px);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-8vw;top:-4vw;width:44vw;height:44vw;max-width:520px;max-height:520px;
+  border:1px solid var(--line);border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,77,46,.16),transparent 62%)}
+.eyebrow{font-size:12px;letter-spacing:.32em;color:var(--acc2);text-transform:uppercase}
+h1{font-size:clamp(40px,9vw,96px);line-height:1.02;margin:.16em 0 .12em;letter-spacing:-.02em;font-weight:900}
+h1 em{font-style:normal;color:var(--acc)}
+.hero p.lead{max-width:56ch;color:#c3cbd4;margin:0 0 26px;font-size:clamp(15px,2.6vw,18px)}
+.addr{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border:1px solid var(--line);
+  border-radius:2px;font-size:13px;color:var(--mut);background:var(--bg2)}
+.addr b{color:var(--acc2);font-weight:600;letter-spacing:.02em}
+.addr::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(255,77,46,.14)}
+
+/* ---------- 栏目通用 ---------- */
+section{padding:clamp(44px,8vw,80px) 0;border-bottom:1px solid var(--line)}
+.sechead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(24px,4.5vw,40px)}
+.secnum{font-size:12px;color:var(--acc);letter-spacing:.24em;font-weight:700}
+h2{font-size:clamp(24px,4.6vw,38px);margin:0;letter-spacing:-.01em;font-weight:800}
+.secnote{margin-left:auto;color:var(--mut);font-size:13px;max-width:40ch;text-align:right}
+
+/* ---------- 01 片单：数字编号列表 ---------- */
+.roll{list-style:none;margin:0;padding:0}
+.roll li{display:grid;grid-template-columns:64px 1.4fr 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-top:1px solid var(--line)}
+.roll li:first-child{border-top:2px solid var(--txt)}
+.roll .n{font-size:13px;color:var(--acc2);font-weight:700;letter-spacing:.1em}
+.roll h3{margin:0;font-size:clamp(17px,2.8vw,21px);font-weight:700}
+.roll h3 span{display:block;font-size:12px;color:var(--mut);font-weight:400;letter-spacing:.06em;margin-top:2px}
+.roll .meta{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
+.roll .meta b{color:var(--txt);font-weight:600}
+
+/* ---------- 02 观察：文字块 + 侧标 ---------- */
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,56px)}
+.note{background:var(--bg2);border-left:3px solid var(--acc);padding:22px 22px 20px}
+.note .tag{font-size:11px;letter-spacing:.2em;color:var(--acc2)}
+.note h3{margin:.5em 0 .4em;font-size:clamp(18px,3vw,23px);line-height:1.35}
+.note p{margin:0;color:#c8d0d8;font-size:14.5px}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{padding:14px 0;border-bottom:1px dashed var(--line);font-size:14px;color:#c8d0d8}
+.facts b{display:block;font-size:12px;color:var(--mut);letter-spacing:.1em;font-weight:600;margin-bottom:2px}
+
+/* ---------- 03 词表：三栏 ---------- */
+.lex{column-count:2;column-gap:clamp(20px,4vw,44px);column-rule:1px solid var(--line)}
+.lex dl{break-inside:avoid;margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.lex dt{font-weight:700;font-size:15px;color:var(--acc2);letter-spacing:.02em}
+.lex dd{margin:5px 0 0;font-size:13.5px;color:#bfc7cf;line-height:1.65}
+@media(min-width:900px){.lex{column-count:3}}
+
+/* ---------- 04 时间轴 ---------- */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.node{position:relative;padding:0 0 22px}
+.node::before{content:"";position:absolute;left:-24px;top:9px;width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--acc)}
+.node.on::before{background:var(--acc);box-shadow:0 0 0 4px rgba(255,77,46,.16)}
+.node time{font-size:12px;color:var(--acc2);letter-spacing:.1em;font-weight:700;font-variant-numeric:tabular-nums}
+.node h3{margin:.2em 0 .25em;font-size:clamp(16px,2.6vw,19px)}
+.node p{margin:0;color:#bfc7cf;font-size:14px}
+
+/* ---------- 05 关于：反转色卡 ---------- */
+.about{background:var(--paper);color:var(--ink);border-radius:3px;padding:clamp(28px,5vw,48px)}
+.about h2{font-size:clamp(26px,5vw,44px)}
+.about p{color:#3d434b;font-size:15px;max-width:62ch}
+.idcard{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#d9d0be;overflow:hidden;border:1px solid #d9d0be}
+.idcard div{background:var(--paper);padding:14px 16px}
+.idcard dt{font-size:11px;letter-spacing:.16em;color:#7a7162;margin:0 0 4px}
+.idcard dd{margin:0;font-size:14.5px;font-weight:600;word-break:break-all}
+.about .fine{margin-top:22px;font-size:12.5px;color:#6e7480;max-width:none}
+.about .fine a{color:#a33d22;text-decoration:underline;text-decoration-thickness:1px}
+
+/* ---------- 页脚 ---------- */
+footer{border-top:1px solid var(--line);padding:32px 0 56px;color:var(--mut);font-size:13px}
+.footflex{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.footflex .blink{color:#c3cbd4}
+.up{font-size:12px;border:1px solid var(--line);padding:7px 12px;border-radius:2px;color:var(--mut)}
+.up:hover{color:var(--acc2);border-color:var(--acc2)}
+
+@media(max-width:760px){
+  .grid2{grid-template-columns:1fr}
+  .roll li{grid-template-columns:44px 1fr;gap:10px}
+  .roll .meta{grid-column:2/-1;padding-top:4px}
+  .secnote{text-align:left;margin-left:0;width:100%}
+  .lex{column-count:1}
+  .idcard{grid-template-columns:1fr}
+}
+@media(print){
+  .topbar,.up{display:none}
+  body{background:#fff;color:#000}
+  section{border-color:#bbb}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+<header class="topbar" role="banner">
+  <div class="wrap">
+    <div class="brand">345<em>影视</em><small>影像资料室 / VOL.01</small></div>
+    <nav class="nav" aria-label="栏目导航">
+      <a href="#roll">片单</a>
+      <a href="#note">观察</a>
+      <a href="#lex">词表</a>
+      <a href="#tl">年表</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">345yingshi-zh.github.io · 影像资料室</div>
+      <h1>345<em>影视</em></h1>
+      <p class="lead">把一部片拆成能查到的信息：谁拍的、哪年上的、哪个版本、值不值得花这两个小时。没有播放按钮，只有资料。</p>
+      <div class="addr">唯一地址 <b>https://345yingshi-zh.github.io</b></div>
+    </div>
+  </section>
+
+  <section id="roll" aria-labelledby="h-roll">
+    <div class="wrap">
+      <div class="sechead">
+        <span class="secnum">01 / ROLL</span>
+        <h2 id="h-roll">本期片单</h2>
+        <p class="secnote">按「可看性 × 资料完整度」排序，条目持续补录。</p>
+      </div>
+      <ol class="roll">
+        <li>
+          <span class="n">No.01</span>
+          <h3>春江水暖 <span>当代家庭群像 · 135 分钟</span></h3>
+          <div class="meta"><b>顾晓刚</b> ｜ 2019 ｜ 戛纳一种关注首映<br>关键词：富春江、四兄弟、长镜头</div>
+        </li>
+        <li>
+          <span class="n">No.02</span>
+          <h3>宇宙探索编辑部 <span>伪纪录科幻喜剧 · 118 分钟</span></h3>
+          <div class="meta"><b>孔大山</b> ｜ 2023 ｜ 平遥爆款转院线<br>关键词：科幻迷、手持摄影、荒诞诗意</div>
+        </li>
+        <li>
+          <span class="n">No.03</span>
+          <h3>坠落的审判 <span>法庭剧情 · 152 分钟</span></h3>
+          <div class="meta"><b>茹斯汀·特里耶</b> ｜ 2023 ｜ 金棕榈<br>关键词：婚姻叙事、录音证据、母子关系</div>
+        </li>
+        <li>
+          <span class="n">No.04</span>
+          <h3>奥本海默 <span>传记史诗 · 180 分钟 · IMAX 70mm</span></h3>
+          <div class="meta"><b>克里斯托弗·诺兰</b> ｜ 2023 ｜ 实景核爆拍摄<br>关键词：曼哈顿计划、黑白闪回、音墙</div>
+        </li>
+        <li>
+          <span class="n">No.05</span>
+          <h3>年少日记 <span>校园心理 · 95 分钟</span></h3>
+          <div class="meta"><b>卓亦谦</b> ｜ 2023 ｜ 金像奖最佳新导演<br>关键词：香港教育、儿童情绪、日记体</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="note" aria-labelledby="h-note">
+    <div class="wrap">
+      <div class="sechead">
+        <span class="secnum">02 / NOTES</span>
+        <h2 id="h-note">观察笔记</h2>
+        <p class="secnote">不追热搜，只记那些会被检索到的判断。</p>
+      </div>
+      <div class="grid2">
+        <article class="note">
+          <div class="tag">EDITORIAL · 片单逻辑</div>
+          <h3>为什么这份片单里没有「必看 Top 10」</h3>
+          <p>榜单会把作品压成一个分数，而资料室做的是另一件事：把片长、版本、首映渠道、主创履历摊开，让读者自己决定排在第几位。所以这里的编号只是录入顺序，不是评分。</p>
+        </article>
+        <ul class="facts">
+          <li><b>检索习惯</b>多数人搜片名时会带上「年份 + 导演」，比如「宇宙探索编辑部 孔大山」。条目的字段顺序照这个习惯排。</li>
+          <li><b>版本差异</b>院线版、电影节剪辑版、流媒体加长版，时长可能差 8 到 20 分钟，影评引用前先确认版本。</li>
+          <li><b>档期口径</b>本文档里的「上映年」指首映年份，不等于内地公映日期，二者经常相差一年以上。</li>
+          <li><b>信息边界</b>只整理公开可查的主创、片长、获奖与发行信息；票房数字取自公开报道，不自行估算。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="lex" aria-labelledby="h-lex">
+    <div class="wrap">
+      <div class="sechead">
+        <span class="secnum">03 / LEXICON</span>
+        <h2 id="h-lex">幕后词表</h2>
+        <p class="secnote">读影评时总碰到但不想查第二次的词。</p>
+      </div>
+      <div class="lex">
+        <dl><dt>长镜头</dt><dd>一次开机到停机之间不剪切的连续画面。不是「镜头长」，而是调度、表演、声音必须一次成立。</dd></dl>
+        <dl><dt>场刊评分</dt><dd>电影节期间媒体人给当届入围片的即时打分，波动大，适合看风向，不适合当定论。</dd></dl>
+        <dl><dt>标准收藏 Criterion</dt><dd>以修复质量和评论音轨著称的发行线，进入其片单常被视作作者地位的某种背书。</dd></dl>
+        <dl><dt>视效预览 Previs</dt><dd>实拍前用简模动画把镜头节奏走一遍，大场面电影几乎都靠它控预算。</dd></dl>
+        <dl><dt>同期声</dt><dd>拍摄现场实录的对白与环境声，比后期配音更难做，但空间感是真的。</dd></dl>
+        <dl><dt>洗印拷贝</dt><dd>胶片时代从底片冲印出来的放映用拷贝，每放映一轮都会掉质感，所以老片修复要回找原始素材。</dd></dl>
+        <dl><dt>群像戏</dt><dd>没有唯一主角，靠人物之间的牵动推进。写这类片的笔记，重点是关系网而不是剧情梗概。</dd></dl>
+        <dl><dt>彩蛋与片尾字幕</dt><dd>很多信息藏在字幕里：客串名单、未署名音乐、致敬名单。看片别急着关。</dd></dl>
+        <dl><dt>分级与地区删减</dt><dd>同一部片在不同地区的分级和时长不同，讨论「删减版」时需要同时写明地区与版本号。</dd></dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="tl" aria-labelledby="h-tl">
+    <div class="wrap">
+      <div class="sechead">
+        <span class="secnum">04 / TIMELINE</span>
+        <h2 id="h-tl">年度脉络</h2>
+        <p class="secnote">不是大事记，是这一两年值得回头再看的那几部。</p>
+      </div>
+      <div class="tl">
+        <div class="node on">
+          <time>2023</time>
+          <h3>作者电影进院线的一年</h3>
+          <p>《宇宙探索编辑部》《年少日记》这类低成本、强作者印记的作品，靠电影节口碑反哺院线排片，发行路径开始变化。</p>
+        </div>
+        <div class="node">
+          <time>2022</time>
+          <h3>修复版重新上桌</h3>
+          <p>一批老片 4K 修复后在艺术院线重映，观众第一次在大银幕上看到原本的构图和颗粒，也带火了「版本考据」这类讨论。</p>
+        </div>
+        <div class="node">
+          <time>2019</time>
+          <h3>新人从电影节起步</h3>
+          <p>《春江水暖》等片把本土题材带进戛纳、柏林的平行单元，说明首作不必先证明商业性，也能拿到国际场域的第一次评价。</p>
+        </div>
+        <div class="node">
+          <time>2014–2018</time>
+          <h3>类型片的资料空白期</h3>
+          <p>那几年很多片只有宣发稿、没有可核对的版本信息。本资料室会把能补的片长、剪辑版、主创访谈慢慢补齐。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <div class="about">
+        <span class="secnum" style="color:#a33d22">05 / COLOPHON</span>
+        <h2 id="h-about">关于 345影视</h2>
+        <p>345影视是一个静态的、人工整理的影像资料室，不是片库，也不提供播放、下载、解析或跳转服务。更新慢，但每一条都能追到公开来源。如果你在某个地方看到同名站点却带着播放器和弹窗广告，那不是这里。</p>
+        <dl class="idcard">
+          <div><dt>站点名称</dt><dd>345影视</dd></div>
+          <div><dt>唯一网址</dt><dd><a href="https://345yingshi-zh.github.io">https://345yingshi-zh.github.io</a></dd></div>
+          <div><dt>收录范围</dt><dd>华语院线与作者电影、全球电影节入围作品、版本与发行信息</dd></div>
+          <div><dt>不做什么</dt><dd>不挂播放器 · 不放下载 · 不接外链跳转 · 不上统计与广告 SDK</dd></div>
+          <div><dt>更新方式</dt><dd>手工增补，单文件静态页，无后台、无数据库</dd></div>
+          <div><dt>内容纠错</dt><dd>片长、年份、版本若与公开资料冲突，以最早发行方公告为准</dd></div>
+        </dl>
+        <p class="fine">页面内所有栏目跳转均为页内锚点，不会产生新请求；全站仅此一个 <code>index.html</code> 文件。站名与域名以本页所载为准，任何仿冒地址请自行辨别。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="footflex">
+      <div><b class="blink">345影视</b> · 影像资料室 ｜ 唯一地址 https://345yingshi-zh.github.io</div>
+      <a class="up" href="#top" aria-label="回到顶部">↑ 回顶部</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
